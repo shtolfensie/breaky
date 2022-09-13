@@ -50,13 +50,13 @@ async function storeData(data) {
     });
   }
   catch (e) {
-    console.log(e);
+    console.error(e);
     return false;
   }
   console.log("myFunc: have connection");
 
   try {
-    const [rows, _] = await con.execute("insert into break_prompts (prompt_datetime, click_datetime, action) values (?,?,?);", [data.promptDatetime, data.clickDatetime, data.action])
+    const [rows, _] = await con.execute("insert into break_prompts (prompt_datetime, click_datetime, action) values (?,?,?);", [data.promptDatetime, data.clickDatetime, data.action]);
     console.log(rows);
     return true;
   }
@@ -69,11 +69,11 @@ async function storeData(data) {
   }
 }
 
-async function printIt() {
-  const eh = await storeData({ promptDatetime: "2022-09-12 19:46:05", clickDatetime: "2022-09-12 19:47:08", action: "break_small" })
-  console.log(eh)
-  return eh;
-}
+// async function printIt() {
+//   const eh = await storeData({ promptDatetime: "2022-09-12 19:46:05", clickDatetime: "2022-09-12 19:47:08", action: "break_small" })
+//   console.log(eh)
+//   return eh;
+// }
 
 // console.log(printIt())
 
