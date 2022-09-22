@@ -15,7 +15,8 @@ export class BreaksTableComponent implements OnInit {
   constructor(private breaksService: BreaksService) { }
 
   ngOnInit(): void {
-    this.breaksService.getBreakData().subscribe((breaks) => this.breaks = breaks);
+    this.breaksService.onBreakData().subscribe((breaks) => this.breaks = breaks);
+    this.breaksService.getBreakyData();
   }
 
 }

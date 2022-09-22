@@ -19,10 +19,11 @@ export class BreaksChartComponent implements OnInit {
   constructor(private breaksService: BreaksService) {}
 
   ngOnInit(): void {
-    this.breaksService.getBreakData().subscribe((breaks) => {
+    this.breaksService.onBreakData().subscribe((breaks) => {
       this.breaks = breaks;
       this.formatData();
     });
+    this.breaksService.getBreakyData();
   }
 
   formatData() {

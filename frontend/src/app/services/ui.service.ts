@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-export type DataTimeRange = "today" | "week" | "last50" | "custom";
+export type DataTimeRange = "today" | "week" | "last200";
 
 @Injectable({
   providedIn: 'root'

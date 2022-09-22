@@ -3,7 +3,6 @@
   <div class="felx flex-row space-x-2 items-center">
     <button (click)="onClick('today')"  [ngClass]="selectedRange === 'today' ? rangeBtnSelClasses : rangeBtnBaseClasses" class="px-3 py-1 rounded-lg shadow-sm font-medium text-sm">Today</button>
     <button (click)="onClick('week')"   [ngClass]="selectedRange === 'week' ? rangeBtnSelClasses : rangeBtnBaseClasses" class="px-3 py-1 rounded-lg shadow-sm font-medium text-sm">This Week</button>
-    <button (click)="onClick('last50')" [ngClass]="selectedRange === 'last50' ? rangeBtnSelClasses : rangeBtnBaseClasses" class="px-3 py-1 rounded-lg shadow-sm font-medium text-sm">Last 50</button>
-    <button (click)="onClick('custom')" [ngClass]="selectedRange === 'custom' ? rangeBtnSelClasses : rangeBtnBaseClasses" class="px-3 py-1 rounded-lg shadow-sm font-medium text-sm">Custom</button>
+    <button (click)="onClick('last200')" [ngClass]="selectedRange === 'last200' ? rangeBtnSelClasses : rangeBtnBaseClasses" class="px-3 py-1 rounded-lg shadow-sm font-medium text-sm">Last 200</button>
   </div>
 </div>

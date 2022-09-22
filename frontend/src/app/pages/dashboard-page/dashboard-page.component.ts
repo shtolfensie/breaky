@@ -27,10 +27,12 @@ export class DashboardPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breaksService.getBreakData().subscribe((breaks) => {
+    this.breaksService.onBreakData().subscribe((breaks) => {
+      console.log("subscribe");
       this.breaks = breaks;
       this.calculateStats();
     });
+    this.breaksService.getBreakyData();
   }
 
 
