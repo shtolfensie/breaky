@@ -1,19 +1,25 @@
 const mysql = require("mysql2/promise")
+var {startOfWeek, endOfWeek, endOfToday, startOfToday, format} = require('date-fns')
 
 //require('dotenv').config()
 
-// TODO(filip): accept query params to specify how many results should be returned
 exports.handler = async (event) => {
   console.log(event);
-  console.log(process.env.MYSQL_DB);
 
   if (event.requestContext && event.requestContext.http) {
     if (event.requestContext.http.method !== "GET") {
       return { statusCode: 405 };
     }
   }
+  
+  let range = "";
+  if (event.queryStringParameters) {
+    if (event.queryStringParameters.range) {
+      range = event.queryStringParameters.range;
+    }
+  }
 
-  const rows = await getData();
+  const rows = await getData(range);
 
   if (!rows) {
     return { statusCode: 500 };
@@ -22,7 +28,7 @@ exports.handler = async (event) => {
   return { statusCode: 200, body: JSON.stringify(rows), headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" }};
 }
 
-async function getData() {
+async function getData(range) {
   console.log("getData start");
   let con;
   try {
@@ -40,8 +46,26 @@ async function getData() {
   }
   console.log("getData: have connection");
 
+
   try {
-    const [rows, _] = await con.query("select * from (select * from break_prompts order by id desc limit 100) as sub order by id asc;");
+    if (range === "last200") {
+      const [rows, _] = await con.query("select * from (select * from break_prompts order by click_datetime desc limit 200) as sub order by id asc;");
+      return rows;
+    }
+
+    let today = new Date();
+    let fromDate = "";
+    let toDate = "";
+    if (range === "today") {
+      fromDate = format(startOfToday(), "yyyy-MM-dd HH:mm:ss");
+      toDate = format(endOfToday(), "yyyy-MM-dd HH:mm:ss");
+    }
+    else if (range === "week") {
+      fromDate = format(startOfWeek(today, { weekStartsOn: 1 }), "yyyy-MM-dd HH:mm:ss");
+      toDate = format(endOfWeek(today, { weekStartsOn: 1 }), "yyyy-MM-dd HH:mm:ss");
+    }
+
+    const [rows, _] = await con.execute("select * from break_prompts where click_datetime > ? and click_datetime < ? order by click_datetime;", [fromDate, toDate]);
     console.log(rows);
     return rows;
   }
@@ -53,3 +77,22 @@ async function getData() {
     con.end();
   }
 }
+
+function test(range) {
+
+  let today = new Date();
+  let fromDate = "";
+  let toDate = "";
+  if (range === "today") {
+    fromDate = format(startOfToday(), "yyyy-MM-dd HH:mm:ss");
+    toDate = format(endOfToday(), "yyyy-MM-dd HH:mm:ss");
+  }
+  else if (range === "week") {
+    fromDate = format(startOfWeek(today, { weekStartsOn: 1 }), "yyyy-MM-dd HH:mm:ss");
+    toDate = format(endOfWeek(today, { weekStartsOn: 1 }), "yyyy-MM-dd HH:mm:ss");
+  }
+
+  console.log(fromDate, toDate);
+}
+
+test("today");
