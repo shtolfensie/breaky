@@ -19,7 +19,7 @@ exports.handler = async (event) => {
     return { statusCode: 500 };
   }
 
-  return { statusCode: 200, body: JSON.stringify(rows)};
+  return { statusCode: 200, body: JSON.stringify(rows), headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" }};
 }
 
 async function getData() {
