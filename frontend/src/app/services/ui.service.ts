@@ -8,7 +8,7 @@ export type DataTimeRange = "today" | "week" | "last200";
 })
 export class UiService {
 
-  private dataTimeRange: DataTimeRange = "today";
+  private dataTimeRange: DataTimeRange = "week";
   private dataTimeRangeSubject = new Subject<any>();
 
   setDataTimeRange(tr: DataTimeRange): void {
