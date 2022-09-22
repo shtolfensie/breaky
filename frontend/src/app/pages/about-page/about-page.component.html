@@ -1,0 +1,43 @@
+<div class="flex flex-row items-start space-x-12">
+  <div class="mt-4 max-w-[65ch] space-y-4">
+    <article class="leading-7">
+      <h1 class="text-lg font-semibold">What is Breaky?</h1>
+
+      <p>
+        Breaky, the <a href="" class="decoration-1 hover:decoration-2 decoration-sky-300 underline-offset-2 underline">bash script</a>, generates a notification every 20 minutes. That notification serves as a reminder to take a brake from
+        whaterver you are doing on the computer. To stretch, relax your eyes and maybe go refill your glass.
+      </p>
+
+      <p class="mt-3">
+        As a fun and interesting bonus, the notification also has three buttons: "Full break", "Short break", "Skip". You can use these to
+        keep track of how often you actually take a break. This data is stored into a database and can be later view on this website.
+      </p>
+    </article>
+
+    <article>
+      <h1 class="text-lg font-semibold">Which technologies is Breaky built with?</h1>
+
+      <p>
+        The main part of breaky is a simple bash script, which uses the utilily notify-send.py to create notifications (with buttons!) and then it calls the at command, to schedule
+        another execution of it self in 20 minutes. If you click one of the buttons, the action will be stored to the database.
+      </p>
+
+      <p class="mt-3">
+        Interaction with the database is accomplished by calling AWS lambda functions. There are currently two lambda functions, one which stores the data,
+        another which retrieves it.
+      </p>
+
+      <p class="mt-3">
+        The database is a mariaDB instance. It has only one table, which stores the prompt date, click date and the resulting action (skip, full, short).
+      </p>
+
+      <p class="mt-3">
+        This web app is bulit using Angular. Styles are done using Tailwind CSS. To create the charts, the ngx-charts library is used.
+      </p>
+    </article>
+
+  </div>
+
+  <img class="mt-10" src="/assets/notifScreenshot.png">
+
+</div>

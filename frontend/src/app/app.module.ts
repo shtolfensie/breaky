@@ -16,12 +16,14 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ChartPageComponent } from './pages/chart-page/chart-page.component';
 import { BreaksChartComponent } from './components/breaks-chart/breaks-chart.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'table', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'table', component: TablePageComponent },
   { path: 'chart', component: ChartPageComponent },
+  { path: 'about', component: AboutPageComponent },
 ]
 
 @NgModule({
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     StatsCardComponent,
     ChartPageComponent,
     BreaksChartComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,
