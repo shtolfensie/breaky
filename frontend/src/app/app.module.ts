@@ -19,7 +19,7 @@ import { BreaksChartComponent } from './components/breaks-chart/breaks-chart.com
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'table', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'table', component: TablePageComponent },
   { path: 'chart', component: ChartPageComponent },
