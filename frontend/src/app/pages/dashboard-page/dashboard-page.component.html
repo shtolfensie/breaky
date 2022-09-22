@@ -1,0 +1,15 @@
+<div class="mt-2 grid grid-cols-6 grid-rows-[min-content_100px_500px] gap-4">
+  <div class="col-span-4">
+    <app-date-range-select></app-date-range-select>
+  </div>
+  <div class="row-span-full col-span-2 bg-blue-50 col-start-5 flex items-center justify-center">
+    <span class="text-slate-400">TODO</span>
+  </div>
+  <app-stats-card statName="Full breaks" [statValue]="simpleStats?.full" [statIcon]="faCoffee" statIconColor="green"></app-stats-card>
+  <app-stats-card statName="Short breaks" [statValue]="simpleStats?.short" [statIcon]="faMinimize" statIconColor="blue"></app-stats-card>
+  <app-stats-card statName="Skipped breaks" [statValue]="simpleStats?.skipped" [statIcon]="faForward" statIconColor="orange"></app-stats-card>
+  <div class="row-start-3 col-span-4">
+    <app-breaks-chart></app-breaks-chart>
+  </div>
+</div>
+

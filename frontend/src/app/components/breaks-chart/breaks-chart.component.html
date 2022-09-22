@@ -1,0 +1,17 @@
+<div class="py-3 px-4 bg-white shadow-sm rounded-md border w-full h-full">
+  <div *ngIf="chartData === null" class="w-full h-full flex justify-center items-center">
+    <div class="w-fit h-fit animate-spin text-slate-500">
+      <fa-icon [icon]="faSpinner" size="3x"></fa-icon>
+    </div>
+  </div>
+  <div class="w-full h-full">
+    <ngx-charts-bar-vertical-stacked
+      *ngIf="chartData"
+      [results]="chartData"
+      [xAxisLabel]="'Date'"
+      [showXAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+    ></ngx-charts-bar-vertical-stacked>
+  </div>
+</div>
