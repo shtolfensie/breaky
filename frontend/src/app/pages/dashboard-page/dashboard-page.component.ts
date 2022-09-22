@@ -40,13 +40,11 @@ export class DashboardPageComponent implements OnInit {
     if (this.breaks.length === 0) return;
 
 
-    if (this.simpleStats === null) {
-      this.simpleStats = {
-        full: 0,
-        short: 0,
-        skipped: 0,
-      };
-    }
+    this.simpleStats = {
+      full: 0,
+      short: 0,
+      skipped: 0,
+    };
 
     for (let b of this.breaks) {
       if (b.action === "break_full") {

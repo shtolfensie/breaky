@@ -12,8 +12,10 @@ export class UiService {
   private dataTimeRangeSubject = new Subject<any>();
 
   setDataTimeRange(tr: DataTimeRange): void {
-    this.dataTimeRange = tr;
-    this.dataTimeRangeSubject.next(this.dataTimeRange);
+    if (tr !== this.dataTimeRange) {
+      this.dataTimeRange = tr;
+      this.dataTimeRangeSubject.next(this.dataTimeRange);
+    }
   }
 
   getDataTimeRange(): DataTimeRange {
